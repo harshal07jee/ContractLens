@@ -1,0 +1,29 @@
+services:
+  # Backend FastAPI Service
+  - type: web
+    name: contractlens-backend
+    runtime: python
+    rootDir: backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    plan: free
+    healthCheckPath: /health
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.9
+      - key: CORS_ORIGINS
+        value: "*"
+      - key: MAX_UPLOAD_SIZE_MB
+        value: "25"
+
+  # Frontend Next.js Service
+  - type: web
+    name: contractlens-frontend
+    runtime: node
+    rootDir: frontend
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    plan: free
+    envVars:
+      - key: NEXT_PUBLIC_API_BASE_URL
+        sync: false
