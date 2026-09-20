@@ -1,0 +1,20 @@
+# Environment and secrets
+.env
+.env.local
+
+# Frontend
+frontend/node_modules/
+frontend/.next/
+
+# Python
+backend/.venv/
+**/__pycache__/
+*.pyc
+
+# Runtime data and uploads
+data/
+uploads/
+
+# Editor and OS files
+.DS_Store
+Thumbs.db
